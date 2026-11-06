@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#171715">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Court Legends">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>COURT LEGENDS | Rise to the moment</title>
 <style>
 :root{color-scheme:dark;--ink:#171715;--panel:#22211e;--panel-hi:#2b2925;--paper:#f5f1e8;--muted:#a9a39a;--orange:#ff7135;--orange-hi:#ff9461;--line:rgba(255,255,255,.11);--green:#b7dc91;--wood:#c58a53}
@@ -22,7 +27,7 @@ html,body{width:100%;height:100%;min-height:0;overflow:hidden}.app{width:100%;ma
 <div class="app">
   <header class="topbar">
     <div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div><div class="brand-name">COURT <b>LEGENDS</b></div><div class="brand-tag">Rise to the moment</div></div></div>
-    <div class="top-actions"><a class="academy-link" href="academy.html">SKILLS ACADEMY</a><button class="fullscreen-button" id="fullscreenButton" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button><button class="sound-button" id="soundButton" aria-label="Toggle sound">Sound on</button><div class="profile-chip"><span class="avatar" id="avatar">R</span><span id="profileName">ROOKIE</span></div></div>
+    <div class="top-actions"><a class="academy-link" href="academy.html">SKILLS ACADEMY</a><button class="sound-button" id="installButton" type="button">INSTALL APP</button><button class="fullscreen-button" id="fullscreenButton" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button><button class="sound-button" id="soundButton" aria-label="Toggle sound">Sound on</button><div class="profile-chip"><span class="avatar" id="avatar">R</span><span id="profileName">ROOKIE</span></div></div>
   </header>
   <section class="matchbar" id="matchbar" aria-label="Match scoreboard">
     <div class="team-score"><span class="team-mark">CL</span><div><div class="team-name">HOME · CITY RUNNERS</div><div class="score" id="homeScore">00</div></div></div>
@@ -161,5 +166,6 @@ function changeZoom(value){targetZoom=clamp(value,.72,1);}
 document.querySelector('#rotateLeft').addEventListener('click',()=>rotateCamera(-15));document.querySelector('#rotateRight').addEventListener('click',()=>rotateCamera(15));document.querySelector('#zoomIn').addEventListener('click',()=>changeZoom(targetZoom+.05));document.querySelector('#zoomOut').addEventListener('click',()=>changeZoom(targetZoom-.05));document.querySelector('#zoomReset').addEventListener('click',resetCamera);ui.canvas.addEventListener('wheel',e=>{e.preventDefault();changeZoom(targetZoom+(e.deltaY<0?.035:-.035));},{passive:false});
 function frame(now){resize();if(game&&!game.paused&&!game.over){const dt=Math.min(.04,(now-lastTime)/1000||0);update(dt);if(game&&!game.over&&game.ball.owner===null&&!game.ball.shot&&!game.ball.pass)updateLooseBall(dt);}render(now);lastTime=now;requestAnimationFrame(frame);}window.addEventListener('resize',resize);resize();requestAnimationFrame(frame);
 </script>
+<script src="pwa.js" defer></script>
 </body>
 </html>
